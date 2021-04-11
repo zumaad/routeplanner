@@ -11,8 +11,11 @@ to use any other protocols over TCP other than HTTP, Websockets, and a couple of
 not use any of the supported protocols that browsers allow you to use.
 
 <h3><b>Running the backend</b></h3>
-install the dependencies: "pip3 install -r requirements.txt"  
-run the server: python3 mongowrapper.py
+Make sure you have a mongo server up and running (on the default port) as the backend needs to connect
+to a mongo instance.
+
+<b>install the dependencies:</b> "pip3 install -r requirements.txt"  
+<b>run the server:</b> python3 mongowrapper.py
 
 
 <h3><b>querying the backend</b></h3>
