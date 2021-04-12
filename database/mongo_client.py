@@ -3,7 +3,7 @@ import pymongo
 class MongoClient:
     """ responsible for interacting with mongo """
     def __init__(self):
-        self.mongo_client = pymongo.MongoClient()
+        self.client = pymongo.MongoClient()
 
     def insertDataByCity(self, cityName, data):
         """ Sample mongo insert for new or existing city with geospatial index check """
