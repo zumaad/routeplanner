@@ -11,7 +11,8 @@ not use any of the supported protocols that browsers allow you to use.
 
 <h3><b>Running the backend</b></h3>
 Make sure you have a mongo server up and running (on the default port) as the backend needs to connect
-to a mongo instance.
+to a mongo instance. You can just run:  
+<b>"mongod -dbpath="routeplanner/data"</b>
 
 <b>install the dependencies:</b> "pip3 install -r requirements.txt"  
 <b>run the server:</b> python3 mongowrapper.py
@@ -21,7 +22,7 @@ Check out the API documentation by going to http://127.0.0.1:8000/docs once
 you've got the backend up and running
 
 <h1><b>/database</b></h1>
-contains or mongo client that is used by the backend service (backend/api.py) to 
+contains our mongo client that is used by the backend service (backend/api.py) to 
 query mongodb.
 
 <h1><b>/data</b></h1>
