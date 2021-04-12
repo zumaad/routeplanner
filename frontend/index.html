@@ -137,6 +137,7 @@
 			<span style="display:inline-block; width:120px">Place of Worship</span> 
 		</div>
 	</fieldset>
+	<br>
 	<fieldset>
 		<div>
 			<input type='checkbox' name='query' value='None' />
@@ -148,9 +149,15 @@
 			<label for="long">Longitude:</label> 
 			<input type="text" id="long" name="long">
 			<br>
+         <input type="range" name="distance" id="distance" min="0" max="80000" onchange="updateTextInput(this.value);">
+  <label for="distance">Distance</label>
+<input type="text" id="textInput" value="">
+
+			<br>
 			<input type="submit" value="Submit">
 		</div>
 	</fieldset>
+	<br>
 </form>
 <!-- Controls the map title -->
 <div id="map-title">
@@ -159,6 +166,10 @@
 <div id="map">
 </div>
 <script>
+
+function updateTextInput(val) {
+          document.getElementById('textInput').value=val; 
+        }
 	var map = L.map('map', {
 	 center: [42.3370, -71.0892],
 	 zoom: 12
