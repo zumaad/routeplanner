@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>route-planner-leaflet</title>
+	<meta name="viewport" content="height = device-height / 2, width = devicce-width initial-scale=1.0">
+	<meta charset="utf-8">
+<!-- Loads the leaflet library -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js">
+	</script>
+<!--Controls the position of the map-->
+	<style>		body { margin:0; padding:0; }
+		#map { height: 70vh;}
+		#map-title { position: fixed; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }
+	</style>
+</head>
+<body>
+<h1>
+	Route Planner 
+</h1>
+<p>
+	The planner with the root 
+</p>
+<h2>
+	Food 
+</h2>
+<form action="request">
+	<fieldset>
+		<legend>Food</legend> 
+		<div>
+			<input type='checkbox' name='query' value='ice_cream' />
+			<span style="display:inline-block; width:120px">Ice Cream</span> 
+			<input type='checkbox' name='query' value='pub' />
+			<span style="display:inline-block;  width:120px">Pub</span> 
+			<input type='checkbox' name='query' value='bar' />
+			<span style="display:inline-block;  width:120px">Bar</span> 
+		</div>
+		<div>
+			<input type='checkbox' name='query' value='vending_machine' />
+			<span style="display:inline-block; width:120px">Vending Machine</span> 
+			<input type='checkbox' name='query' value='fast_food' />
+			<span style="display:inline-block; width:120px">Fast Food</span> 
+			<input type='checkbox' name='query' value='restaurant' />
+			<span style="display:inline-block; width:120px">Restaurant</span> 
+		</div>
+		<div>
+			<input type='checkbox' name='query' value='cafe' />
+			<span style="display:inline-block; width:120px">Cafe</span> 
+			<input type='checkbox' name='query' value='food_court' />
+			<span style="display:inline-block; width:120px">Food Court</span> 
+			<input type='checkbox' name='query' value='biergarten' />
+			<span style="display:inline-block; width:120px">Biergarten</span> 
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Utility</legend> 
+		<div>
+			<input type='checkbox' name='query' value='waste_basket' />
+			<span style="display:inline-block; width:120px">Waste Basket</span> 
+			<input type='checkbox' name='query' value='telephone' />
+			<span style="display:inline-block; width:120px">Telephone</span> 
+			<input type='checkbox' name='query' value='Toilets' />
+			<span style="display:inline-block; width:120px">Toilets</span> 
+		</div>
+		<div>
+			<input type='checkbox' name='query' value='drinking_water' />
+			<span style="display:inline-block; width:120px">Drinking Water</span> 
+			<input type='checkbox' name='query' value='waste_disposal' />
+			<span style="display:inline-block; width:120px">Waste Disposal</span> 
+			<input type='checkbox' name='query' value='bicycle_rental' />
+			<span style="display:inline-block; width:120px">Bicycle Rental</span> 
+		</div>
+		<div>
+			<input type='checkbox' name='query' value='bicycle_repair_station' />
+			<span style="display:inline-block; width:120px">Bicycle Repair</span> 
+			<input type='checkbox' name='query' value='bicycle_parking' />
+			<span style="display:inline-block; width:120px">Bicycle Parking</span> 
+			<input type='checkbox' name='query' value='post_box' />
+			<span style="display:inline-block; width:120px">Post Box</span> 
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Parking</legend> 
+		<div>
+			<input type='checkbox' name='query' value='parking' />
+			<span style="display:inline-block; width:120px">Parking</span> 
+			<input type='checkbox' name='query' value='parking_space' />
+			<span style="display:inline-block; width:120px">Parking Space</span> 
+			<input type='checkbox' name='query' value='parking_entrance' />
+			<span style="display:inline-block; width:120px">Parking Entrance</span> 
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Recreation</legend> 
+		<div>
+			<input type='checkbox' name='query' value='planetarium' />
+			<span style="display:inline-block; width:120px">Planetarium</span> 
+			<input type='checkbox' name='query' value='arts_center' />
+			<span style="display:inline-block; width:120px">Arts Center</span> 
+			<input type='checkbox' name='query' value='cinema' />
+			<span style="display:inline-block; width:120px">Cinema</span> 
+		</div>
+		<div>
+			<input type='checkbox' name='query' value='dive_centre' />
+			<span style="display:inline-block; width:120px">Dive Center</span> 
+			<input type='checkbox' name='query' value='theatre' />
+			<span style="display:inline-block; width:120px">Theater</span> 
+			<input type='checkbox' name='query' value='fountain' />
+			<span style="display:inline-block; width:120px">Fountain</span> 
+		</div>
+		<div>
+			<input type='checkbox' name='query' value='nightclub' />
+			<span style="display:inline-block; width:120px">Nightclub</span> 
+			<input type='checkbox' name='query' value='internet_cafe' />
+			<span style="display:inline-block; width:120px">Internet Cafe</span> 
+			<input type='checkbox' name='query' value='marketplace' />
+			<span style="display:inline-block; width:120px">Marketplace</span> 
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Government</legend> 
+		<div>
+			<input type='checkbox' name='query' value='public_building' />
+			<span style="display:inline-block; width:120px">Public Building</span> 
+			<input type='checkbox' name='query' value='fire_station' />
+			<span style="display:inline-block; width:120px">Fire Station</span> 
+			<input type='checkbox' name='query' value='police' />
+			<span style="display:inline-block; width:120px">Police</span> 
+			<input type='checkbox' name='query' value='post_office' />
+			<span style="display:inline-block; width:120px">Post Office</span> 
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Religion</legend> 
+		<div>
+			<input type='checkbox' name='query' value='place_of_worship' />
+			<span style="display:inline-block; width:120px">Place of Worship</span> 
+		</div>
+	</fieldset>
+	<fieldset>
+		<div>
+			<input type='checkbox' name='query' value='None' />
+			<span style="display:inline-block; width:120px">Miscellaneous</span> 
+			<br>
+			<label for="lat">Latitude:</label> 
+			<input type="text" id="lat" name="lat">
+			<br>
+			<label for="long">Longitude:</label> 
+			<input type="text" id="long" name="long">
+			<br>
+			<input type="submit" value="Submit">
+		</div>
+	</fieldset>
+</form>
+<!-- Controls the map title -->
+<div id="map-title">
+	Route Planner 
+</div>
+<div id="map">
+</div>
+<script>
+	var map = L.map('map', {
+	 center: [42.3370, -71.0892],
+	 zoom: 12
+	});
+	
+	L.tileLayer(
+	    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+	 attribution: '&copy; <a href="https://osm.org/copyright">\
+	   OpenStreetMap</a> contributors, &copy;\
+	   <a href="https://carto.com/attribution">CARTO</a>'
+	  }).addTo(map);
+	  
+		markerGroup = new L.LayerGroup();
+	  posMarker = L.marker([42.3370, -71.089], {opacity:0}).addTo(map);
+	 
+	  // lets you fill lat and long by clicking on the map
+	  map.on('click', function(e) {
+	  // fills the lat and long fields
+    document.getElementById('lat').value = e.latlng.lat;
+    document.getElementById('long').value = e.latlng.lng;
+    
+    // places a marker where you click
+    // posMarker = L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);  
+    posMarker.setLatLng([e.latlng.lat,e.latlng.lng]).setOpacity(1);
+
+});
+</script>
+</body>
+</html>
