@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>route-planner-leaflet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+
+  <!-- Loads the leaflet library -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+ 
+  <!--Controls the position of the map-->  
+  <style>
+  body { margin:0; padding:0; }
+  #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+  #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }
+  </style>
+</head>
+  
+ <body>
+  
+  <!-- Controls the map title --> 
+  <div id="map-title">EDIT map title</div>
+  <div id="map"></div>
+   
+   <script>
+     var map = L.map('map', {
+      center: [42.3370, -71.0892],
+      zoom: 12
+     });
+     
+     L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://osm.org/copyright">\
+        OpenStreetMap</a> contributors, &copy;\
+        <a href="https://carto.com/attribution">CARTO</a>'
+  }).addTo(map);
+     
+     
+   </script>
+  </body>
+</html>
