@@ -1,3 +1,6 @@
+for a hosted version of the api, checkout:
+http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/docs
+
 <h1><b>/backend</b></h1>
 
 Contains the code for the backend service which returns a list of 
@@ -9,13 +12,15 @@ mongodb directly from the frontend due to JS running in the browser not being ab
 to use any other protocols over TCP other than HTTP, Websockets, and a couple of others. Basically, MongoDb does
 not use any of the supported protocols that browsers allow you to use.
 
-<h3><b>Running the backend</b></h3>
+<h3><b>Running the backend locally</b></h3>
 Make sure you have a mongo server up and running (on the default port) as the backend needs to connect
-to a mongo instance. You can just run:  
-<b>"mongod -dbpath="routeplanner/data"</b>
+to a mongo instance.   
 
-<b>install the dependencies:</b> "pip3 install -r requirements.txt"  
-<b>run the server:</b> python3 mongowrapper.py
+Assuming you have mongo installed, run:  
+<b>start the mongo server:</b> "mongod -dbpath="routeplanner/data"
+
+<b>install the dependencies for the backend:</b> "pip3 install -r requirements.txt"  
+<b>run the backend:</b> python3 api.py
 
 <h3><b>querying the backend</b></h3>
 Check out the API documentation by going to http://127.0.0.1:8000/docs once
