@@ -61,4 +61,4 @@ def location_handler(locations_request: LocationsRequest) -> List[Location]:
 
 
 if __name__ == "__main__":
-    uvicorn.run("api:app", reload=True)
+    uvicorn.run("api:app", reload=True, host="0.0.0.0")
