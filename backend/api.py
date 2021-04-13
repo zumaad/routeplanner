@@ -53,11 +53,9 @@ def location_handler(locations_request: LocationsRequest) -> List[Location]:
     query_result = mongo_client.pullDataInRadius("Boston", start, locations_request.radius)
     preferences = set(locations_request.preferences)
     locations = [Location(tags=document["tags"], geometry=document["geometry"]) for document in query_result]
-    locs = locations
     if preferences:
-        locs = get_only_preferred_locations(locations, preferences)
-    print(locs)
-    return locs
+        return get_only_preferred_locations(locations, preferences)
+    return locations
 
 
 if __name__ == "__main__":
