@@ -7,10 +7,17 @@ from fastapi import FastAPI
 from typing import List, Dict, Tuple, Set
 from database.mongo_client import MongoClient
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 mongo_client = MongoClient()
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class LocationsRequest(BaseModel):
     start_lon: float
@@ -46,9 +53,11 @@ def location_handler(locations_request: LocationsRequest) -> List[Location]:
     query_result = mongo_client.pullDataInRadius("Boston", start, locations_request.radius)
     preferences = set(locations_request.preferences)
     locations = [Location(tags=document["tags"], geometry=document["geometry"]) for document in query_result]
+    locs = locations
     if preferences:
-        return get_only_preferred_locations(locations, preferences)
-    return locations
+        locs = get_only_preferred_locations(locations, preferences)
+    print(locs)
+    return locs
 
 
 if __name__ == "__main__":
