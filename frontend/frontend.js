@@ -57,7 +57,7 @@ function getStuff() {
                 let long = geoJSON["geometry"]["coordinates"][0]
                 let lat = geoJSON["geometry"]["coordinates"][1]
 
-                L.marker([lat,long]).addTo(map);
+                L.marker([lat,long]).bindPopup(geoJSON["properties"]["amenity"]).addTo(map);
             })
             console.log("after cleaning", data)
         })
@@ -65,6 +65,7 @@ function getStuff() {
             console.error('Error:', error);
         })
 }
+
 
 function updateTextInput(val) {
     document.getElementById('textInput').value = val;
