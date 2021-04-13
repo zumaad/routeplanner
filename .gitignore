@@ -2,3 +2,4 @@
 .mypy_cache/*
 backend/.mypy_cache/*
 backend/.idea/*
+frontend/.idea/*
