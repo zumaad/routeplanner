@@ -7,10 +7,17 @@ from fastapi import FastAPI
 from typing import List, Dict, Tuple, Set
 from database.mongo_client import MongoClient
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 mongo_client = MongoClient()
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class LocationsRequest(BaseModel):
     start_lon: float
@@ -52,4 +59,4 @@ def location_handler(locations_request: LocationsRequest) -> List[Location]:
 
 
 if __name__ == "__main__":
-    uvicorn.run("api:app", reload=True)
+    uvicorn.run("api:app", reload=True, host="0.0.0.0")
