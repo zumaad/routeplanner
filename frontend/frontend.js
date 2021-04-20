@@ -25,6 +25,9 @@ map.on('click', function (e) {
     posMarker.setLatLng([e.latlng.lat, e.latlng.lng]).setOpacity(1);
 })
 
+function onEachFeature(feature,  layer) {
+	layer.}
+
 function getStuff() {
     let checkboxes = document.querySelectorAll("input[name='preferences']")
     let preferences = []
