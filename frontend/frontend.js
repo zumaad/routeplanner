@@ -28,7 +28,7 @@ map.on('click', function (e) {
 
 })
 
-function getStuff() {
+function placeLocationMarkers() {
     let checkboxes = document.querySelectorAll("input[name='preferences']")
     let preferences = []
     checkboxes.forEach(p => {
@@ -43,9 +43,7 @@ function getStuff() {
         "preferences": preferences
     };
     console.log(data)
-    //'http://0.0.0.0:8000/route'
-    //'http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/route'
-    fetch('http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/route', {
+    fetch('http://0.0.0.0:8000/route', {
         method: 'POST', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',
