@@ -43,8 +43,9 @@ function getStuff() {
         "preferences": preferences
     };
     console.log(data)
-    //http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/locations
-    fetch('http://0.0.0.0:8000/route', {
+    //'http://0.0.0.0:8000/route'
+    //'http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/route'
+    fetch('http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/route', {
         method: 'POST', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',

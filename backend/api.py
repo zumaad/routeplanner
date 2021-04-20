@@ -57,6 +57,10 @@ def location_handler(locations_request: LocationsRequest) -> List[Location]:
 
 @app.post("/route", response_model=List[Location])
 def route_handler(locations_request: LocationsRequest) -> List[Location]:
+    """
+    Returns a route which is simply a list of locations, one of each type that the user had a preference for, in order
+    of which one was closest to the user - taking into account that the user would go to one location
+    """
     locations = get_all_locations(locations_request.start_lon, locations_request.start_lat, locations_request.radius)
     types_of_places_to_visit = set(locations_request.preferences)
     built_route = []
