@@ -63,6 +63,8 @@ def route_handler(locations_request: LocationsRequest) -> List[Location]:
     origin = [locations_request.start_lat, locations_request.start_lon]
     while types_of_places_to_visit:
         possible_locations = [l for l in locations if l.tags.get("type") in types_of_places_to_visit]
+        if not possible_locations:
+            break
         closest_location = min(possible_locations, key=lambda l: distance(origin, [l.geometry["coordinates"][1], l.geometry["coordinates"][0]]))
         built_route.append(closest_location)
         origin = [closest_location.geometry["coordinates"][1], closest_location.geometry["coordinates"][0]]
