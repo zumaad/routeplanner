@@ -162,7 +162,7 @@ function returnIcon(string) {
 	} 
 	}
 
-function getStuff() {
+function placeLocationMarkers() {
     let checkboxes = document.querySelectorAll("input[name='preferences']")
     let preferences = []
     checkboxes.forEach(p => {
