@@ -34,6 +34,9 @@ class Location(BaseModel):
 
 
 def get_all_locations(origin_lon: float, origin_lat: float, radius: int) -> List[Location]:
+    """
+    Fetches all the locations within a radius using the mongo client and returns them in the format we want.
+    """
     origin = [origin_lon, origin_lat]
     query_result = mongo_client.pullDataInRadius("Boston", origin, radius)
     for result in query_result:
@@ -69,7 +72,8 @@ def route_handler(locations_request: LocationsRequest) -> List[Location]:
         possible_locations = [l for l in locations if l.tags.get("type") in types_of_places_to_visit]
         if not possible_locations:
             break
-        closest_location = min(possible_locations, key=lambda l: distance(origin, [l.geometry["coordinates"][1], l.geometry["coordinates"][0]]))
+        closest_location = min(possible_locations, key=lambda l: distance(origin, [l.geometry["coordinates"][1],
+                                                                                   l.geometry["coordinates"][0]]))
         built_route.append(closest_location)
         origin = [closest_location.geometry["coordinates"][1], closest_location.geometry["coordinates"][0]]
         type_of_place = closest_location.tags.get("type")
