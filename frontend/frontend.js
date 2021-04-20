@@ -23,6 +23,9 @@ map.on('click', function (e) {
     // places a marker where you click
     // posMarker = L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
     posMarker.setLatLng([e.latlng.lat, e.latlng.lng]).setOpacity(1);
+    posMarker.bindTooltip("start location", {permanent: true})
+    posMarker.openTooltip()
+
 })
 
 function onEachFeature(feature,  layer) {
@@ -43,7 +46,9 @@ function getStuff() {
         "preferences": preferences
     };
     console.log(data)
-    fetch('http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/locations', {
+    //'http://0.0.0.0:8000/route'
+    //'http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/route'
+    fetch('http://ec2-54-160-116-97.compute-1.amazonaws.com:8000/route', {
         method: 'POST', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',
@@ -55,13 +60,18 @@ function getStuff() {
             console.log('Success:', data);
             data.forEach(obj => obj["properties"] = obj["tags"])
             data.forEach(obj => delete obj["tags"])
-            data.forEach(geoJSON => {
+            let markers = []
+            data.forEach((geoJSON, idx) => {
 
                 let long = geoJSON["geometry"]["coordinates"][0]
                 let lat = geoJSON["geometry"]["coordinates"][1]
+                let number = idx + 1
+                let m = L.marker([lat,long]).bindTooltip(number + ". " + geoJSON["properties"]["type"], {permanent: true});
+                m.addTo(map)
+                markers.push(m)
 
-                L.marker([lat,long]).bindPopup(geoJSON["properties"]["amenity"]).addTo(map);
             })
+            markers.forEach(marker => marker.openTooltip())
             console.log("after cleaning", data)
         })
         .catch((error) => {
