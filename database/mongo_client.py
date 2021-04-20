@@ -6,7 +6,7 @@ class MongoClient:
         self.client = pymongo.MongoClient()
 
     def insertDataByCity(self, cityName, data):
-        """ Sample mongo insert for new or existing city with geospatial index check """
+        """ mongo insert for new or existing city with geospatial index check """
 
         db = self.client[cityName]
         posts = db.posts
@@ -15,7 +15,7 @@ class MongoClient:
             posts.insert_one(point)
 
     def pullDataInRadius(self, cityName, center, radius):
-        """ Sample geospatial mongo query: radius is in meters """
+        """ geospatial mongo query: radius is in meters """
 
         db = self.client[cityName]
         posts = db.posts
