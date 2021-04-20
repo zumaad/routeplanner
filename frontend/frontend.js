@@ -23,7 +23,7 @@ map.on('click', function (e) {
     // places a marker where you click
     // posMarker = L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
     posMarker.setLatLng([e.latlng.lat, e.latlng.lng]).setOpacity(1);
-    posMarker.bindTooltip("start location", {permanent: true})
+    posMarker.bindTooltip("start location", {permanent: false})
     posMarker.openTooltip()
 
 })
